@@ -1,0 +1,25 @@
+#include <Arduino.h>
+
+const int pirPin = 7;
+const int ledPin = 8;
+
+void setup() {
+  pinMode(pirPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("PIR Motion Sensor Initialized");
+}
+
+void loop() {
+  int motionDetected = digitalRead(pirPin);
+
+  if (motionDetected == HIGH) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("Motion detected!");
+  } else {
+    digitalWrite(ledPin, LOW);
+    Serial.println("No motion detected");
+  }
+
+  delay(500); // Delay to prevent rapid toggling
+}

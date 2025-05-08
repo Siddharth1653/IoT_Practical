@@ -1,0 +1,42 @@
+#include <Arduino.h>
+
+const int greenPin = 8;
+const int yellowPin = 9;
+const int redPin = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(greenPin, OUTPUT);
+  pinMode(yellowPin, OUTPUT);
+  pinMode(redPin, OUTPUT);
+  Serial.println("Enter 'b' for green blink, 'g' for green ON, 'y' for yellow ON, 'r' for red ON:");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    char command = Serial.read();
+
+    // Turn off all LEDs first
+    digitalWrite(greenPin, LOW);
+    digitalWrite(yellowPin, LOW);
+    digitalWrite(redPin, LOW);
+
+    if (command == 'b') {
+      for (int i = 0; i < 5; i++) {  // Blink 5 times
+        digitalWrite(greenPin, HIGH);
+        delay(300);
+        digitalWrite(greenPin, LOW);
+        delay(300);
+      }
+    }
+    else if (command == 'g') {
+      digitalWrite(greenPin, HIGH);
+    }
+    else if (command == 'y') {
+      digitalWrite(yellowPin, HIGH);
+    }
+    else if (command == 'r') {
+      digitalWrite(redPin, HIGH);
+    }
+  }
+}

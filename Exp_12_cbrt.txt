@@ -1,0 +1,19 @@
+#include <Arduino.h>
+#include <math.h>
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Enter a number to find its cube root:");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    float number = Serial.parseFloat();
+    float cubeRoot = cbrt(number);
+    Serial.print("The cube root of ");
+    Serial.print(number);
+    Serial.print(" is ");
+    Serial.println(cubeRoot);
+    Serial.println("Enter another number to find its cube root:");
+  }
+}

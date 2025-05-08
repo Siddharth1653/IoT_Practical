@@ -1,0 +1,19 @@
+#include <Arduino.h>
+#include <math.h>
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Enter a number to find its square root:");
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    float number = Serial.parseFloat();
+    float squareRoot = sqrt(number);
+    Serial.print("The square root of ");
+    Serial.print(number);
+    Serial.print(" is ");
+    Serial.println(squareRoot);
+    Serial.println("Enter another number to find its square root:");
+  }
+}

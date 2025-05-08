@@ -1,0 +1,29 @@
+#include <Arduino.h>
+
+const int irSensorPin = 7;
+const int ledGreen = 8;
+const int ledRed = 9;
+
+void setup() {
+  pinMode(irSensorPin, INPUT);
+  pinMode(ledGreen, OUTPUT);
+  pinMode(ledRed, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("IR Obstacle Detection Initialized");
+}
+
+void loop() {
+  int irValue = digitalRead(irSensorPin);
+
+  if (irValue == LOW) {  // Obstacle detected
+    digitalWrite(ledGreen, LOW);
+    digitalWrite(ledRed, HIGH);
+    Serial.println("Obstacle detected!");
+  } else {  // No obstacle
+    digitalWrite(ledGreen, HIGH);
+    digitalWrite(ledRed, LOW);
+    Serial.println("No obstacle detected");
+  }
+
+  delay(200);  // Small delay for stability
+}

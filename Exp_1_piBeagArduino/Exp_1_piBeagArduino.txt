@@ -1,0 +1,15 @@
+#include <Arduino.h>
+
+const int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Arduino Microcontroller - Basic Sensor Reading");
+}
+
+void loop() {
+  int sensorValue = analogRead(sensorPin);
+  Serial.print("Sensor Value: ");
+  Serial.println(sensorValue);
+  delay(500);
+}
